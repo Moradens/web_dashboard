@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         avgDowntimeValue.textContent = `${randomAvgDowntime}`;
     }
 
+
     function getRandomColor() {
         const colors = ['red', 'orange', 'green'];
         const randomIndex = Math.floor(Math.random() * colors.length);
