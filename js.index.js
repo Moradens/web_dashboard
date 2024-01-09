@@ -22,13 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         uptimeValue.textContent = `${randomScore}`;
     }
 
-    function updateUptimeBars() {
-        const bars = Array.from(uptimeBarsContainer.getElementsByClassName('uptime-bar'));
-        bars.forEach(bar => {
-            const randomColor = getRandomColor();
-            bar.className = `${randomColor}`;
-        });
-    }
+
 
     function updateUptimeDetails() {
         const randomLastDowntime = Math.floor(Math.random() * 61); // 0 to 60
