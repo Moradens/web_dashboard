@@ -11,7 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 2, date: '3.3.2023', status: 'warning' },
         { id: 3, date: '12.1.2023', status: 'success' },
         { id: 4, date: '12.1.2023', status: 'success' },
-        { id: 5, date: '3.3.2023', status: 'warning' }
+        { id: 5, date: '3.3.2023', status: 'warning' },
+        { id: 6, date: '8.1.2023', status: 'error' },
+        { id: 7, date: '8.1.2023', status: 'error' },
+        { id: 8, date: '3.3.2023', status: 'warning' },
+        { id: 9, date: '12.1.2023', status: 'success' },
+        { id: 10, date: '12.1.2023', status: 'success' },
+        { id: 11, date: '3.3.2023', status: 'warning' },
+        { id: 12, date: '8.1.2023', status: 'error' },
     ];
 
     refreshBtn.addEventListener('click', function () {
@@ -25,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function updateUptimeScore() {
-        const randomScore = Math.floor(Math.random() * 101);
-        uptimeValue.textContent = `${randomScore}`;
+        const avgDowntime = calculateAverageDowntime();
+        uptimeValue.textContent = `${100 - avgDowntime}`;
     }
 
     function updateUptimeDetails() {
