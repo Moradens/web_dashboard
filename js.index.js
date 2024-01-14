@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateUptimeDetails() {
-        const randomLastDowntime = Math.floor(Math.random() * 61); // 0 to 60
-        const randomAvgDowntime = Math.floor(Math.random() * 61); // 0 to 60
+        const randomLastDowntime = Math.floor(Math.random() * 61);
+        const randomAvgDowntime = Math.floor(Math.random() * 61);
 
         lastDowntimeValue.textContent = `${randomLastDowntime} minutes`;
         avgDowntimeValue.textContent = `${randomAvgDowntime}`;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateUptimeBars() {
-        uptimeBarsContainer.innerHTML = ''; // Clear existing bars
+        uptimeBarsContainer.innerHTML = '';
 
         for (let i = 0; i < uptimeData.length; i++) {
             const data = uptimeData[i];
