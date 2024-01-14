@@ -1,3 +1,4 @@
+// js.index.js
 document.addEventListener('DOMContentLoaded', function () {
     const refreshBtn = document.querySelector('.btn.refresh');
     const showAlertBtn = document.querySelector('.btn.show-alert');
@@ -30,11 +31,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateUptimeDetails() {
-        const randomLastDowntime = Math.floor(Math.random() * 61);
-        const randomAvgDowntime = Math.floor(Math.random() * 61);
+        const latestData = uptimeData[uptimeData.length - 1];
+        lastDowntimeValue.textContent = `${latestData.date}`;
 
-        lastDowntimeValue.textContent = `${randomLastDowntime} minutes`;
-        avgDowntimeValue.textContent = `${randomAvgDowntime}`;
+        const avgDowntime = calculateAverageDowntime();
+        avgDowntimeValue.textContent = `${avgDowntime}`;
+    }
+
+    function calculateAverageDowntime() {
+        const totalDowntime = uptimeData.reduce((sum, data) => {
+            return data.status === 'success' ? sum : sum + 1;
+        }, 0);
+
+        const avgDowntime = (totalDowntime / uptimeData.length) * 100;
+        return avgDowntime.toFixed(2);
     }
 
     function getRandomColor() {
