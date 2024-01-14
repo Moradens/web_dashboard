@@ -1,4 +1,3 @@
-// js.index.js
 document.addEventListener('DOMContentLoaded', function () {
     const refreshBtn = document.querySelector('.btn.refresh');
     const showAlertBtn = document.querySelector('.btn.show-alert');
