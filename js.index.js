@@ -1,4 +1,3 @@
-// js.index.js
 document.addEventListener('DOMContentLoaded', function () {
     const refreshBtn = document.querySelector('.btn.refresh');
     const showAlertBtn = document.querySelector('.btn.show-alert');
@@ -6,6 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const uptimeValue = document.querySelector('.uptime');
     const lastDowntimeValue = document.querySelector('.last-downtime');
     const avgDowntimeValue = document.querySelector('.avg-downtime');
+
+    const uptimeData = [
+        { id: 1, date: '8.1.2023', status: 'error' },
+        { id: 2, date: '3.3.2023', status: 'warning' },
+        { id: 3, date: '12.1.2023', status: 'success' },
+        { id: 4, date: '12.1.2023', status: 'success' },
+        { id: 5, date: '3.3.2023', status: 'warning' }
+    ];
 
     refreshBtn.addEventListener('click', function () {
         updateUptimeScore();
@@ -22,8 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
         uptimeValue.textContent = `${randomScore}`;
     }
 
-
-
     function updateUptimeDetails() {
         const randomLastDowntime = Math.floor(Math.random() * 61); // 0 to 60
         const randomAvgDowntime = Math.floor(Math.random() * 61); // 0 to 60
@@ -31,8 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         lastDowntimeValue.textContent = `${randomLastDowntime} minutes`;
         avgDowntimeValue.textContent = `${randomAvgDowntime}`;
     }
-
-
 
     function getRandomColor() {
         const colors = ['red', 'orange', 'green'];
@@ -47,11 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
             alertToast.style.display = 'none';
         }, 2000);
     }
+
     function updateUptimeBars() {
-        const bars = Array.from(uptimeBarsContainer.getElementsByClassName('uptime-bar'));
-        bars.forEach(bar => {
-            const randomColor = getRandomColor();
-            bar.className = `uptime-bar ${randomColor}`;
-        });
+        uptimeBarsContainer.innerHTML = ''; // Clear existing bars
+
+        for (let i = 0; i < uptimeData.length; i++) {
+            const data = uptimeData[i];
+            const bar = document.createElement('div');
+            const status = data.status === 'error' ? 'red' : (data.status === 'warning' ? 'orange' : 'green');
+            bar.className = `uptime-bar ${status}`;
+            uptimeBarsContainer.appendChild(bar);
+        }
     }
 });
